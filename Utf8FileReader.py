@@ -18,3 +18,17 @@ class Utf8FileReader:
             for line in file:
                 acc.append(fun(line))
             file.close()
+
+    # reads the file and returns it as a list, line by line
+    # newline characters at the end of each line, if present, are kept
+    def read(self):
+        acc = []
+        self.map(lambda line: line, acc)
+        return acc
+
+    # reads the file and returns it as a list, line by line
+    # newline characters are removed from the end of each line
+    def readNoNL(self):
+        acc = []
+        self.map(lambda line: line.rstrip("\n"), acc)
+        return acc
