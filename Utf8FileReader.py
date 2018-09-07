@@ -20,15 +20,12 @@ class Utf8FileReader:
             file.close()
 
     # reads the file and returns it as a list, line by line
-    # newline characters at the end of each line, if present, are kept
-    def read(self):
+    # if the remNL argument is passed true, the newline character at the end
+    # of each line is removed
+    def read(self, remNL = False):
         acc = []
-        self.map(lambda line: line, acc)
-        return acc
-
-    # reads the file and returns it as a list, line by line
-    # newline characters are removed from the end of each line
-    def readNoNL(self):
-        acc = []
-        self.map(lambda line: line.rstrip("\n"), acc)
+        if remNL:
+            self.map(lambda line: line.rstrip("\n"), acc)
+        else:
+            self.map(lambda line: line, acc)
         return acc
